@@ -9,7 +9,8 @@
   <version>1.0-SNAPSHOT</version>
   <modules>
     <module>customer-greeting-service</module>
-      <module>customer-name-service</module>
+    <module>customer-name-service</module>
+	<module>customer-address-service</module>
     <module>customer-common-jpa</module>
   </modules>
   <packaging>pom</packaging>
@@ -26,7 +27,7 @@
     <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
     <project.reporting.outputEncoding>UTF-8</project.reporting.outputEncoding>
     <java.version>1.8</java.version>
-    <spring-cloud.version>Edgware.SR2</spring-cloud.version>
+    <spring-cloud.version>Greenwich.RELEASE</spring-cloud.version>
   </properties>
 
   <dependencies>
@@ -49,6 +50,11 @@
       <artifactId>brave-instrumentation-http</artifactId>
       <version>5.6.1</version>
     </dependency>
+      <dependency>
+          <groupId>org.springframework.boot</groupId>
+          <artifactId>spring-boot-starter-test</artifactId>
+          <scope>test</scope>
+      </dependency>
     <dependency>
       <groupId>org.projectlombok</groupId>
       <artifactId>lombok</artifactId>
