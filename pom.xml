@@ -11,7 +11,7 @@
     <module>customer-greeting-service</module>
     <module>customer-name-service</module>
 	<module>customer-address-service</module>
-    <module>customer-common-jpa</module>
+    <module>customer-authorization-service</module>
   </modules>
   <packaging>pom</packaging>
   <name>zipkin-demo</name>
