@@ -11,4 +11,4 @@ Project was built with Spring Boot. It includes four sub moduels:
 
 their have relationship as below:
 
-(https://user-images.githubusercontent.com/47859948/55369951-43be2400-552b-11e9-9fc3-50de2cd849e2.png "zipkin demo module dependencies")
+![zipkin demo modules dependencies](https://user-images.githubusercontent.com/47859948/55369951-43be2400-552b-11e9-9fc3-50de2cd849e2.png "zipkin demo module dependencies")
