@@ -1,5 +1,6 @@
-package io.dkrcharlie.demo.zipkin.service.address;
+package io.dkrcharlie.demo.zipkin.service;
 
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.context.annotation.Bean;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -21,16 +22,13 @@ public class SpringBootCustomerAddressServiceApp {
     public static final String ACTUAL_ADDRESS = "221B Baker Street";
     public static final String DUMMY_ADDRESS = "No where";
 
-
-    @Bean
-    RestTemplate restTemplate(){
-        return new RestTemplate();
-    }
+    @Autowired
+    RestTemplate restTemplate;
 
     public static final String CUSTOMER_AUTH_WS_URL = "http://localhost:8004/api/customer/{id}/auth";
 
     public static void main(String[] args) {
-        run(SpringBootCustomerAddressServiceApp.class,args);
+        run(SpringBootCustomerAddressServiceApp.class,"--spring.application.name=customer-address-service","--server.port=8003");
     }
 
     @GetMapping("/api/customer/{id}/address")
@@ -43,7 +41,7 @@ public class SpringBootCustomerAddressServiceApp {
                 .buildAndExpand(uriPara)
                 .toUri();
 
-        Boolean allowed = restTemplate().getForObject(customerAuthWSURI,Boolean.class);
+        Boolean allowed = restTemplate.getForObject(customerAuthWSURI,Boolean.class);
         if(allowed) {
             return ACTUAL_ADDRESS;
         } else {

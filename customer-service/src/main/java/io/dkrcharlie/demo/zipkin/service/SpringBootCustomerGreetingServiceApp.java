@@ -1,4 +1,4 @@
-package io.dkrcharlie.demo.zipkin.service.greeting;
+package io.dkrcharlie.demo.zipkin.service;
 
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.boot.SpringApplication;
@@ -28,7 +28,7 @@ public class SpringBootCustomerGreetingServiceApp {
     public static final String CUSTOMER_ADDRESS_WS_URL = "http://localhost:8003/api/customer/{id}/address";
 
     public static void main(String[] args) {
-        SpringApplication.run(SpringBootCustomerGreetingServiceApp.class);
+        SpringApplication.run(SpringBootCustomerGreetingServiceApp.class,"--spring.application.name=customer-greeting-service","--server.port=8001");
     }
 
     @GetMapping("/api/customer/{id}/greeting")
@@ -50,5 +50,4 @@ public class SpringBootCustomerGreetingServiceApp {
 
         return "Hello, " + name + " from " + address;
     }
-
 }

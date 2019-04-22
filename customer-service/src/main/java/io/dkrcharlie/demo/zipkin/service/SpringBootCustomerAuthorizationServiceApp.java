@@ -1,4 +1,4 @@
-package io.dkrcharlie.demo.zipkin.service.auth;
+package io.dkrcharlie.demo.zipkin.service;
 
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
@@ -13,7 +13,7 @@ import org.springframework.web.client.RestTemplate;
 public class SpringBootCustomerAuthorizationServiceApp {
 
     public static void main(String[] args) {
-        SpringApplication.run(SpringBootCustomerAuthorizationServiceApp.class,args);
+        SpringApplication.run(SpringBootCustomerAuthorizationServiceApp.class,"--spring.application.name=customer-auth-service","--server.port=8004");
     }
 
     @GetMapping("/api/customer/{id}/auth")
