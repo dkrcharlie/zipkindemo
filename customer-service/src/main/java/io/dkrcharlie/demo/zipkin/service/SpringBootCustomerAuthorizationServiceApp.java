@@ -8,6 +8,8 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.client.RestTemplate;
 
+import java.util.concurrent.ThreadLocalRandom;
+
 @SpringBootApplication
 @RestController
 public class SpringBootCustomerAuthorizationServiceApp {
@@ -17,8 +19,17 @@ public class SpringBootCustomerAuthorizationServiceApp {
     }
 
     @GetMapping("/api/customer/{id}/auth")
-    public Boolean authCustomer(@PathVariable("id") Long id){
+    public String authCustomer(@PathVariable("id") Long id){
+        try {
+            Thread.sleep(ThreadLocalRandom.current().nextLong(500, 1000));
+        } catch (InterruptedException e) {
+            e.printStackTrace();
+        }
         // return true if id is odd number
-        return (id.intValue() & 1) == 1;
+        if((id.intValue() & 1) == 1) {
+            return "true";
+        } else {
+            return "false";
+        }
     }
 }

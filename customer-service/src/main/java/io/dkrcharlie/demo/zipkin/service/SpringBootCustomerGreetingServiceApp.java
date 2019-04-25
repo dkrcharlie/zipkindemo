@@ -13,6 +13,7 @@ import org.springframework.web.util.UriComponentsBuilder;
 import java.net.URI;
 import java.util.HashMap;
 import java.util.Map;
+import java.util.concurrent.ThreadLocalRandom;
 
 @SpringBootApplication
 @RestController
@@ -47,6 +48,12 @@ public class SpringBootCustomerGreetingServiceApp {
 
         String name = restTemplate().getForObject(customerNameWSURI,String.class);
         String address = restTemplate().getForObject(customerAddressWSURI,String.class);
+
+        try {
+            Thread.sleep(ThreadLocalRandom.current().nextLong(500, 1000));
+        } catch (InterruptedException e) {
+            e.printStackTrace();
+        }
 
         return "Hello, " + name + " from " + address;
     }

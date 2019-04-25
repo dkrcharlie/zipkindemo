@@ -6,6 +6,8 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RestController;
 
+import java.util.concurrent.ThreadLocalRandom;
+
 @SpringBootApplication
 @RestController
 public class SpringBootCustomerNameServiceApp {
@@ -18,6 +20,11 @@ public class SpringBootCustomerNameServiceApp {
 
     @GetMapping("/api/customer/{id}/name")
     public String getCustomerName(@PathVariable("id") Long id){
+        try {
+            Thread.sleep(ThreadLocalRandom.current().nextLong(500, 1000));
+        } catch (InterruptedException e) {
+            e.printStackTrace();
+        }
         return DUMMY_CUSTOMER_NAME;
     }
 }

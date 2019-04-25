@@ -1,5 +1,6 @@
 package io.dkrcharlie.demo.zipkin.service;
 
+import brave.Tracing;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.context.annotation.Bean;
@@ -12,6 +13,7 @@ import org.springframework.web.util.UriComponentsBuilder;
 import java.net.URI;
 import java.util.HashMap;
 import java.util.Map;
+import java.util.concurrent.ThreadLocalRandom;
 
 import static org.springframework.boot.SpringApplication.*;
 
@@ -34,6 +36,12 @@ public class SpringBootCustomerAddressServiceApp {
     @GetMapping("/api/customer/{id}/address")
     public String getCustomerAddress(@PathVariable("id") Long id){
 
+        try {
+            Thread.sleep(ThreadLocalRandom.current().nextLong(500, 1000));
+        } catch (InterruptedException e) {
+            e.printStackTrace();
+        }
+
         Map<String,Long> uriPara = new HashMap<>();
         uriPara.put("id",id);
 
@@ -41,8 +49,8 @@ public class SpringBootCustomerAddressServiceApp {
                 .buildAndExpand(uriPara)
                 .toUri();
 
-        Boolean allowed = restTemplate.getForObject(customerAuthWSURI,Boolean.class);
-        if(allowed) {
+        String allowed = restTemplate.getForObject(customerAuthWSURI,String.class);
+        if("true".equalsIgnoreCase(allowed)) {
             return ACTUAL_ADDRESS;
         } else {
             return DUMMY_ADDRESS;
